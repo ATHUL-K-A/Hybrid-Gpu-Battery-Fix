@@ -131,7 +131,7 @@ Note - non gaming laptops probably don't have these control panels so you might 
 and reinstall both the igpu and dgpu drivers from the laptop manufacturers website(not intel,amd,nvidia site)
 - All credit of ddu goes to their respective team
 - Also try to ensure your laptop drivers are in the latest version
-- Warning - reinstalling the driver has to be properly done or it might lead to errors
+- **Warning** - reinstalling the driver has to be properly done or it might lead to errors
 
 --- 
 
@@ -183,7 +183,7 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 
 - Windows reset essentially reinstalls windows
 - By doing it we can remove all bloat and faulty software which might be the reason for the dGPU to turn on
-- Warning - windows reset essentially deletes all the files in **C** drive so, have a proper backup and ensure that you research the internet for all the required drivers and sometimes newer version of the dGPU and iGPU might be the reason so u would have to use the dGPU and iGPU drivers from the laptop manufacturer
+- **Warning**  - windows reset essentially deletes all the files in **C** drive so, have a proper backup and ensure that you research the internet for all the required drivers and sometimes newer version of the dGPU and iGPU might be the reason so u would have to use the dGPU and iGPU drivers from the laptop manufacturer
 
 --- 
 
@@ -223,7 +223,7 @@ Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED
 - Note - do not open nvidia control panel and click apply settings as it might override your configuration
 - Restart your pc
 - Also reapply these settings after every nvidia driver update
-- Warning - many of these settings can cause issues so be careful
+- **Warning**  - many of these settings can cause issues so be careful
 
 --- 
 
@@ -262,7 +262,7 @@ Add DWORD:
 EnableImplicitSync = 0
 ```
 - Restart after completion
-- Warning- changing registries can cause system wide issues so please research and be careful  
+- **Warning** - changing registries can cause system wide issues so please research and be careful  
   
 --- 
 
