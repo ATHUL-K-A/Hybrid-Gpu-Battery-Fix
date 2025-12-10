@@ -36,7 +36,9 @@ Some of the images present here are from the web and they are clickable links to
 ## Testing
 - Install hwinfo(free for non commercial use)
 - Open hwinfo
+
  ![hwinfo_start screen](images/hw_info_start.png)
+ 
 - Select *sensors only* and press start
 - scroll below till you find your graphics card
 - Click on it's name if its details is not displayed immediately
