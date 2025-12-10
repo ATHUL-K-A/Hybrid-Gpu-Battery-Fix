@@ -9,8 +9,8 @@ I have decided to use ⚠️ symbols in the name of the method which has a high 
 ---
 
 ## Disclaimer
-I do not own any softwares or any external links mentioned in this page so the credits belong to their respective owners.
-
+I do not own any softwares, softwares present in the image or any external links mentioned in this page so the credits belong to their respective owners.
+Some of the images present here are from the web and they are clickable links to it's source
 ---
 
 ## Context
@@ -60,6 +60,10 @@ I do not own any softwares or any external links mentioned in this page so the c
 - Note: Many of the methods are universally applicable and if other laptops are referred then it is either from my experience of using my friends laptop or info that i encountered while going through the web
 
 ---
+
+## Note
+- Some of these methods are nvidia specific
+- Laptops with both amd dGPU and iGPU should be able to easily control this using amd control panel
 
 ## Method 1 - Nvidia Advanced Optimus laptops
 
@@ -135,17 +139,94 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - This app is supposed to simplify the windows graphics settings in Method 7 by automate it
 - If this doesn't work, remember to use ```win_global_gpu.exe reset``` before fully deleting it
 
-## Method 9 - Windows reset ⚠️
+## Method 9 - Windows Advance Graphics Settings ⚠️
+
+- Hardware accelerate graphics scheduling and variable refresh rate were mentioned to be reasons for the dGPU to wake up
+- open settings
+- navigate System -> Display -> Graphics -> Advance Graphics Settings
+- disable Hardware accelerate graphics scheduling and variable refresh rate
+- Warning - Hardware accelerate graphics scheduling is used to reduce the cpu load and variable refresh rate is used to prevent jitters in gameplay so it is not recommended to turn off
+## Method 10 - Windows reset ⚠️
 
 - Windows reset essentially reinstalls windows
 - By doing it we can remove all bloat and faulty software which might be the reason for the dGPU to turn on
 - Warning - windows reset essentially deletes all the files in **C** drive so, have a proper backup and ensure that you research the internet for all the required drivers and sometimes newer version of the dGPU and iGPU might be the reason so u would have to use the dGPU and iGPU drivers from the laptop manufacturer
 
-## Method 10 - Install Linux ⚠️
+## Method 11 - Install Linux ⚠️
 
 - Installing linux is a sure way to solve the dGPU turning on problem in optimus laptops
 - Use something like [envycontrol](https://github.com/bayasdev/envycontrol) or [supergfxctl](https://wiki.archlinux.org/title/Supergfxctl)
 (All the credit goes to their respective teams)
-- Both of these
+- Both of these change the initramfs and ensures that the dedicated gpu never turns on
+- Install them based on their github steps and remember to use `integrated mode`
+- 
+### Warning for linux
 
+- Although 2025 saw many linux improvements and people switching, it may not be viable for u
+- First ensure that all apps are available for linux eg- adobe doesn't work, whatsapp only has website clients without calling feature.
+- Some people may run windows virtual machine in linux but it is not practical due to laptop battery
+- Before installing, ensure that you know all the steps or you might delete all the drives
+- There also laptop specific problems like audio poor quality/not working, fan control errors etc. some of them might be fixable but only to the most techiest of techies. Also some problems like fan control can damage the laptop as my fan used to run at absurdly low speeds which is impossible in windows and can do permanent damage.
+
+## Method 12 Nvprofileinspector ⚠️
+
+- It is basically a tool used to alter the nvidia driver settings
+- All it's credit goes to [Nvprofileinspector](https://github.com/Orbmu2k/nvidiaProfileInspector/releases) and it's team
+- It can be used to change the nvidia driver settings which can't be normally changed to ideal values
+- Note - Do not change the below given settings on nvidia advance optimus or mux switch laptops.
+- Open the app
+![nvprofileinspector]()
+- Navigate to below mentioned settings and change the values in the drop down menu
+```
+Power Management - Mode = Adaptive
+Enable Application for Optimus = SHIM_RENDERINGMODE_INTEGRATED
+Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED
+```
+- Click apply settings
+- Note - do not open nvidia control panel and click apply settings as it might override your configuration
+- Restart your pc
+- Also reapply these settings after every nvidia driver update
+- Warning - many of these settings can cause issues so be careful
+
+## Method 13 Registry changes 
+
+- Use alongside method 12
+- These registries are supposed to disable nvidia gpu from turning on and to let the laptop manufacturer drivers to control the dGPU instead of nvidia driver conflict 
+
+- click start + r
+- type regedit
+- Go to the folders specified in the path and add the dword with their corresponding values
+
+```
+1)Disable D3D Kernel Telemetry Polling
+
+Path:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVHybrid
+
+Add DWORD:
+DisableDxgKrnlD3DPerfTelemetry = 1
+
+2)Enable Manual Power-Control Logic
+
+Path:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVHybrid
+
+Add DWORD:
+NvEnablePowerManagementControl = 1
+
+3)Disable Implicit Sync
+
+Path:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global
+
+Add DWORD:
+EnableImplicitSync = 0
+```
+- Restart after completion
+- Warning- changing registries can cause system wide issues so please research and be careful  
+  
+## Conclusion
+
+- The first 4 methods are safe and occur due to lack of user knowledge
+- Most issues are resolved by installing the laptop manufacturer drivers but the problem arises due to random software updates and the fact that newer games/apps need updated drivers
 
