@@ -11,6 +11,7 @@ I have decided to use ⚠️ symbols in the name of the method which has a high 
 ## Disclaimer
 I do not own any softwares, softwares present in the image or any external links mentioned in this page so the credits belong to their respective owners.
 Some of the images present here are from the web and they are clickable links to it's source.
+
 ---
 
 ## Context
@@ -39,7 +40,9 @@ Some of the images present here are from the web and they are clickable links to
 - Select *sensors only* and press start
 - scroll below till you find your graphics card
 - Click on it's name if its details is not displayed immediately
+ 
  ![hwinfo_sensor](images/hw_info_sensors.png)
+
 - Pay attention to **current** column and **Gpu power** row
   If your laptop has nvidia optimus then it would be in nvidia hybrid mode so the gpu will turn on when the hwinfo app is opened for a split second to check the sensors so the non zero values in the average and max columns of the gpu power row is fine
 - If the value in the **current** column and **Gpu power** row turns non zero periodically within 20s- 1min or stays non zero then there is a problem.
@@ -65,15 +68,21 @@ Some of the images present here are from the web and they are clickable links to
 - Some of these methods are nvidia specific
 - Laptops with both amd dGPU and iGPU should be able to easily control this using amd control panel
 
+--- 
+
 ## Method 1 - Nvidia Advanced Optimus laptops
 
 - It is basically a improved version of mux switch which retains the convenience of normal hybrid(nvidia optimus) mode which doesn't require restart.
 - Nvidia optimus laptops can fully shut down the nvidia gpu based on the setting in the laptop specific control panel.
 - Open your laptop control panel(eg- armoury crate for asus, omen gaming hub for hp, lenovo vantage for lenovo)
 Note - non gaming laptops probably don't have these control panels so you might not find them.
+
 [![Nvidia optimus](images/Aorus centre.jpg)](https://jarrods.tech/how-to-turn-off-optimus-on-your-gaming-laptop/)
+
 - Go to your graphics settings and use hybrid igpu, igpu only mode(mux setting), gpu eco mode
 - This should ensure only the igpu is running
+
+--- 
 
 ## Method 2 - Lenovo advanced optimus gaming laptops
 
@@ -81,8 +90,12 @@ Note - non gaming laptops probably don't have these control panels so you might 
 - Basically it ensures that only the igpu will ever run when it is on battery power and the dGPU will turn on when plugged in
 - Open lenovo vantage software
 - Go to gpu working mode
+
   [![vantage_gpu](images/lenovo_vantage.png)](https://i.redd.it/gxpszokxbet91.png)
+
 - Select Hybrid auto mode
+
+--- 
 
 ## Method 3 - Mux switch
 
@@ -92,15 +105,21 @@ Note - non gaming laptops probably don't have these control panels so you might 
 - Select igpu or dGPU based on your usecase
 - It would either ask for restart or you would have to manually do it for the effects to apply
 
+--- 
+
 ## Method 4 - Hybrid mode (only nvidia optimus)
 
 - Some laptops only have hybrid mode because of a physically direct link between the display and the dGPU
 - In these laptops the dGPU is connected to the display through the iGPU
 - Also the dGPU can never be **properly off** using hardware mechanism in the above mentioned methods and is purely software controlled 
+
 ![hybrid_mode](images/hybrid.png)
+
 - For some of these laptop they might have iGPU only mode but it works by changing the bios setting( some laptop control pannel settings might have it)
 - Go to your bios( check the bios key of the manufacturer in the internet)
 - Select the igpu mode
+
+--- 
 
 ## Method 5 Rollback the driver ⚠️
 
@@ -112,6 +131,8 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - Also try to ensure your laptop drivers are in the latest version
 - Warning - reinstalling the driver has to be properly done or it might lead to errors
 
+--- 
+
 ## Method 6 - Nvidia control panel
 
 - Nvidia control panel also can be used to decide the graphics card usage
@@ -119,9 +140,13 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - Open the nvidia control panel
 - Go to **Manage 3D settings**
 - Click the drop down column and select integrated graphic
+
 ![nvidia_ctrl_panel](images/nvidia_ctrl.png)
+
 - This basically sets all the apps to only use integrated graphics
 - However the apps might override due to windows setting or the laptop control panel
+
+--- 
 
 ## Method 7 - Windows graphics settings
 
@@ -132,11 +157,15 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - now click on these apps and select power saving graphics
 - Also manually add apps by clicking add apps and select power saving graphics
 
+--- 
+
 ## Method 8 - Win_Global_Gpu
 
 - All credit goes to the contributors of [win_global_gpu](https://github.com/machineonamission/win_global_gpu)
 - This app is supposed to simplify the windows graphics settings in Method 7 by automate it
 - If this doesn't work, remember to use ```win_global_gpu.exe reset``` before fully deleting it
+
+--- 
 
 ## Method 9 - Windows Advance Graphics Settings ⚠️
 
@@ -145,11 +174,16 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - navigate System -> Display -> Graphics -> Advance Graphics Settings
 - disable Hardware accelerate graphics scheduling and variable refresh rate
 - Warning - Hardware accelerate graphics scheduling is used to reduce the cpu load and variable refresh rate is used to prevent jitters in gameplay so it is not recommended to turn off
+
+--- 
+
 ## Method 10 - Windows reset ⚠️
 
 - Windows reset essentially reinstalls windows
 - By doing it we can remove all bloat and faulty software which might be the reason for the dGPU to turn on
 - Warning - windows reset essentially deletes all the files in **C** drive so, have a proper backup and ensure that you research the internet for all the required drivers and sometimes newer version of the dGPU and iGPU might be the reason so u would have to use the dGPU and iGPU drivers from the laptop manufacturer
+
+--- 
 
 ## Method 11 - Install Linux ⚠️
 
@@ -158,7 +192,7 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 (All the credit goes to their respective teams)
 - Both of these change the initramfs and ensures that the dedicated gpu never turns on
 - Install them based on their github steps and remember to use `integrated mode`
-- 
+
 ### Warning for linux
 
 - Although 2025 saw many linux improvements and people switching, it may not be viable for u
@@ -166,6 +200,8 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 - Some people may run windows virtual machine in linux but it is not practical due to laptop battery
 - Before installing, ensure that you know all the steps or you might delete all the drives
 - There also laptop specific problems like audio poor quality/not working, fan control errors etc. some of them might be fixable but only to the most techiest of techies. Also some problems like fan control can damage the laptop as my fan used to run at absurdly low speeds which is impossible in windows and can do permanent damage.
+
+--- 
 
 ## Method 12 Nvprofileinspector ⚠️
 
@@ -186,6 +222,8 @@ Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED
 - Restart your pc
 - Also reapply these settings after every nvidia driver update
 - Warning - many of these settings can cause issues so be careful
+
+--- 
 
 ## Method 13 Registry changes 
 
@@ -224,6 +262,8 @@ EnableImplicitSync = 0
 - Restart after completion
 - Warning- changing registries can cause system wide issues so please research and be careful  
   
+--- 
+
 ## Conclusion
 
 - The first 4 methods are safe and occur due to lack of user knowledge
