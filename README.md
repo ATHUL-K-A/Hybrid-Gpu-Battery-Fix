@@ -227,7 +227,7 @@ Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED #this particula
 
 --- 
 
-## Method 13 Registry changes 
+## Method 13 Registry changes ⚠️
 
 - Use alongside method 12
 - These registries are supposed to disable nvidia gpu from turning on and to let the laptop manufacturer drivers to control the dGPU instead of nvidia driver conflict 
