@@ -217,7 +217,7 @@ and reinstall both the igpu and dgpu drivers from the laptop manufacturers websi
 ```
 Power Management - Mode = Adaptive
 Enable Application for Optimus = SHIM_RENDERINGMODE_INTEGRATED
-Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED #this particular one might have an negative effect so also first test without this
+Optimus Flags for enabled Applications= SHIM_MCCOMPAT_INTEGRATED
 ```
 - Click apply settings
 - Note - do not open nvidia control panel and click apply settings as it might override your configuration
